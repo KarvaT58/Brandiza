@@ -62,7 +62,6 @@ const faqItems = [
 ]
 
 export function FAQ() {
-  const { elementRef, isRevealed } = useScrollReveal(0.1)
   const { elementRef: headerRef, isRevealed: headerRevealed } = useScrollReveal(0.2)
 
   return (
@@ -82,24 +81,18 @@ export function FAQ() {
         </div>
 
         {/* FAQ Accordion */}
-        <div ref={elementRef} className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqItems.map((item, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className={`border border-border rounded-lg px-4 sm:px-6 bg-card hover:bg-muted/50 smooth-transition gradient-border hover-lift-enhanced group ${
-                  isRevealed ? "scroll-reveal" : ""
-                }`}
-                style={{ 
-                  animationDelay: `${index * 0.1}s`,
-                  opacity: isRevealed ? 1 : 0
-                }}
+                className="border border-border border-b rounded-lg px-4 sm:px-6 bg-card hover:bg-muted/50 transition-colors"
               >
-                <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-foreground hover:no-underline py-4 sm:py-6 group-hover:text-primary transition-colors">
+                <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-foreground hover:no-underline py-4 sm:py-6">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm sm:text-base text-muted-foreground pb-4 sm:pb-6 leading-relaxed group-hover:text-foreground transition-colors">
+                <AccordionContent className="text-sm sm:text-base text-muted-foreground pb-4 sm:pb-6 leading-relaxed">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>

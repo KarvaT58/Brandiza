@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { MessageCircle, Phone, Clock, HelpCircle, CheckCircle2, Copy, Check } from "lucide-react"
+import { MessageCircle, Phone, HelpCircle, CheckCircle2, Copy, Check } from "lucide-react"
 
 export function SupportPage() {
   const [copied, setCopied] = useState(false)
@@ -29,7 +29,7 @@ export function SupportPage() {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-foreground">
             Suporte Técnico
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -105,37 +105,6 @@ export function SupportPage() {
               <p className="text-xs text-muted-foreground text-center">
                 {phoneNumber}
               </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Horário de Atendimento */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <Card className="bg-muted/30 border-2">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <Clock className="h-6 w-6 text-primary" />
-                <CardTitle className="text-2xl">Horário de Atendimento</CardTitle>
-              </div>
-              <CardDescription>
-                Quando você pode nos contatar
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-background/50 rounded-lg">
-                  <p className="font-semibold text-foreground mb-2">Segunda a Sexta</p>
-                  <p className="text-2xl font-bold text-primary">8h às 18h</p>
-                </div>
-                <div className="text-center p-4 bg-background/50 rounded-lg">
-                  <p className="font-semibold text-foreground mb-2">Sábado</p>
-                  <p className="text-2xl font-bold text-primary">9h às 13h</p>
-                </div>
-                <div className="text-center p-4 bg-background/50 rounded-lg">
-                  <p className="font-semibold text-foreground mb-2">Domingo</p>
-                  <p className="text-2xl font-bold text-muted-foreground">Fechado</p>
-                </div>
-              </div>
             </CardContent>
           </Card>
         </div>
