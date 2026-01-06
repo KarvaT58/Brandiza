@@ -100,7 +100,7 @@ export function Testimonials() {
               <CardHeader className="pb-4 relative z-10">
                 {/* Quote Icon with decoration */}
                 <div className="mb-2 relative">
-                  <div className="quote-decoration text-foreground/5">"</div>
+                  <div className="quote-decoration text-foreground/5">&ldquo;</div>
                   <Quote className="h-6 w-6 sm:h-8 sm:w-8 text-muted-foreground group-hover:text-primary transition-colors relative z-10" />
                 </div>
               </CardHeader>
