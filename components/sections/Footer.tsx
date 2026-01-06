@@ -11,12 +11,12 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-muted/50 border-t">
+    <footer className="bg-muted/50 border-t relative section-pattern">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+            <div className="flex items-center gap-3 mb-4 group">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 group-hover:scale-110 transition-transform">
                 <Image
                   src="/logo.png"
                   alt="Brandiza Logo"
@@ -28,7 +28,7 @@ export function Footer() {
                   }}
                 />
               </div>
-              <h3 className="text-lg font-semibold">Brandiza</h3>
+              <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">Brandiza</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-2">
               Desenvolvimento de sites profissionais e modernos para sua empresa.
@@ -43,27 +43,27 @@ export function Footer() {
             <div className="space-y-2 text-sm">
               <Link
                 href="/"
-                className="block text-muted-foreground hover:text-foreground transition-colors hover-scale smooth-transition"
+                className="block text-muted-foreground hover:text-primary transition-colors hover-scale smooth-transition group/item"
               >
-                Início
+                <span className="group-hover/item:translate-x-1 inline-block transition-transform">Início</span>
               </Link>
               <Link
                 href="/faq"
-                className="block text-muted-foreground hover:text-foreground transition-colors hover-scale smooth-transition"
+                className="block text-muted-foreground hover:text-primary transition-colors hover-scale smooth-transition group/item"
               >
-                Perguntas Frequentes
+                <span className="group-hover/item:translate-x-1 inline-block transition-transform">Perguntas Frequentes</span>
               </Link>
               <Link
                 href="/garantias"
-                className="block text-muted-foreground hover:text-foreground transition-colors hover-scale smooth-transition"
+                className="block text-muted-foreground hover:text-primary transition-colors hover-scale smooth-transition group/item"
               >
-                Garantias e Políticas
+                <span className="group-hover/item:translate-x-1 inline-block transition-transform">Garantias e Políticas</span>
               </Link>
               <Link
                 href="/suporte"
-                className="block text-muted-foreground hover:text-foreground transition-colors hover-scale smooth-transition"
+                className="block text-muted-foreground hover:text-primary transition-colors hover-scale smooth-transition group/item"
               >
-                Suporte
+                <span className="group-hover/item:translate-x-1 inline-block transition-transform">Suporte</span>
               </Link>
             </div>
           </div>
@@ -99,12 +99,12 @@ export function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Brandiza. Todos os direitos reservados.</p>
-          <button
-            onClick={scrollToTop}
-            className="mt-4 sm:mt-0 hover:text-foreground transition-colors"
-          >
-            Voltar ao topo ↑
-          </button>
+                <button
+                  onClick={scrollToTop}
+                  className="mt-4 sm:mt-0 hover:text-primary transition-colors hover-scale smooth-transition group"
+                >
+                  <span className="group-hover:-translate-y-1 inline-block transition-transform">Voltar ao topo ↑</span>
+                </button>
         </div>
       </div>
     </footer>

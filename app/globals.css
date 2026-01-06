@@ -198,3 +198,325 @@ html {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Gradientes sutis */
+.gradient-subtle {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #000000 0%, #333333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Glassmorphism */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Scroll Reveal Animation */
+@keyframes scrollReveal {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  opacity: 0;
+  animation: scrollReveal 0.8s ease-out forwards;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Ripple Effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  top: 50%;
+  left: 50%;
+  animation: ripple 0.6s;
+  opacity: 0;
+}
+
+.ripple-effect:active::after {
+  animation: ripple 0.6s;
+}
+
+/* Icon Animation */
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.icon-float {
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+/* Number Counter Animation */
+@keyframes numberPop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.number-pop {
+  animation: numberPop 0.6s ease-out forwards;
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animated {
+  background: linear-gradient(-45deg, #000000, #1a1a1a, #000000, #0a0a0a);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* 3D Hover Effect */
+.hover-3d {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.hover-3d:hover {
+  transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Particle Background */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: float 15s infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Quote Decoration */
+.quote-decoration {
+  font-size: 4rem;
+  line-height: 1;
+  opacity: 0.1;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-family: Georgia, serif;
+}
+
+/* Badge Pulse */
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.badge-pulse {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* Avatar Border Animation */
+@keyframes avatarBorder {
+  0%, 100% {
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.avatar-animated {
+  animation: avatarBorder 3s ease-in-out infinite;
+}
+
+/* Section Background Patterns */
+.section-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Enhanced Hover Lift */
+.hover-lift-enhanced {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.hover-lift-enhanced:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Glow on Focus */
+.glow-focus:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Text Gradient Animation */
+@keyframes textGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(90deg, #000000, #333333, #000000);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradient 3s linear infinite;
+}
+

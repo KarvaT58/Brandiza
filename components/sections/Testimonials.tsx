@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Star, Quote } from "lucide-react"
 import Image from "next/image"
+import { useScrollReveal } from "@/hooks/useScrollReveal"
 
 const testimonials = [
   {
@@ -64,44 +65,56 @@ const testimonials = [
 ]
 
 export function Testimonials() {
+  const { elementRef, isRevealed } = useScrollReveal(0.1)
+  const { elementRef: headerRef, isRevealed: headerRevealed } = useScrollReveal(0.2)
+
   return (
-    <section id="depoimentos" className="py-16 sm:py-20 md:py-24 bg-background">
+    <section id="depoimentos" className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-black via-gray-900 via-gray-100 to-background section-pattern relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-foreground">
+        <div ref={headerRef} className={`text-center mb-12 sm:mb-16 ${headerRevealed ? "scroll-reveal" : ""}`} style={{ opacity: headerRevealed ? 1 : 0 }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             O que nossos clientes dizem
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
             Resultados reais de empresas que confiaram na Brandiza para transformar sua presença online
           </p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div ref={elementRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className="relative flex flex-col h-full hover-lift smooth-transition group hover:border-primary/50 animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`relative flex flex-col h-full hover-lift-enhanced smooth-transition group hover:border-primary/50 gradient-border overflow-hidden bg-white/5 backdrop-blur-sm ${
+                isRevealed ? "scroll-reveal" : ""
+              }`}
+              style={{ 
+                animationDelay: `${index * 0.15}s`,
+                opacity: isRevealed ? 1 : 0
+              }}
             >
-              <CardHeader className="pb-4">
-                {/* Quote Icon */}
-                <div className="mb-2">
-                  <Quote className="h-6 w-6 sm:h-8 sm:w-8 text-muted-foreground group-hover:text-foreground transition-colors" />
+              {/* Background gradient on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <CardHeader className="pb-4 relative z-10">
+                {/* Quote Icon with decoration */}
+                <div className="mb-2 relative">
+                  <div className="quote-decoration text-foreground/5">"</div>
+                  <Quote className="h-6 w-6 sm:h-8 sm:w-8 text-muted-foreground group-hover:text-primary transition-colors relative z-10" />
                 </div>
               </CardHeader>
               
-              <CardContent className="flex-grow flex flex-col space-y-4">
+              <CardContent className="flex-grow flex flex-col space-y-4 relative z-10">
                 {/* Testimonial Text */}
-                <p className="text-sm sm:text-base text-foreground leading-relaxed flex-grow">
+                <p className="text-sm sm:text-base text-white leading-relaxed flex-grow group-hover:text-white transition-colors">
                   &ldquo;{testimonial.testimonial}&rdquo;
                 </p>
 
                 {/* Result Badge */}
                 <div>
-                  <Badge className="bg-primary text-primary-foreground text-xs sm:text-sm font-semibold">
-                    <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 fill-primary-foreground text-primary-foreground" />
+                  <Badge className="bg-primary text-primary-foreground text-xs sm:text-sm font-semibold badge-pulse group-hover:scale-105 transition-transform">
+                    <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 fill-primary-foreground text-primary-foreground group-hover:rotate-12 transition-transform" />
                     {testimonial.result}
                   </Badge>
                 </div>
@@ -111,29 +124,31 @@ export function Testimonials() {
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star
                       key={i}
-                      className="h-3 w-3 sm:h-4 sm:w-4 fill-foreground text-foreground"
+                      className="h-3 w-3 sm:h-4 sm:w-4 fill-white text-white group-hover:fill-primary group-hover:text-primary transition-colors"
+                      style={{ animationDelay: `${i * 0.1}s` }}
                     />
                   ))}
                 </div>
 
-                <Separator className="my-2" />
+                <Separator className="my-2 group-hover:bg-primary/50 transition-colors" />
 
                 {/* Author Info */}
                 <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors flex-shrink-0">
+                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-white/30 group-hover:border-primary transition-colors flex-shrink-0 avatar-animated group-hover:scale-110 transition-transform">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <Image
                       src={testimonial.image}
                       alt={testimonial.name}
                       width={56}
                       height={56}
-                      className="object-cover w-full h-full"
+                      className="object-cover w-full h-full relative z-10"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-sm sm:text-base text-foreground truncate">
+                    <p className="font-semibold text-sm sm:text-base text-white truncate group-hover:text-primary transition-colors">
                       {testimonial.name}
                     </p>
-                    <p className="text-xs sm:text-sm text-muted-foreground truncate">
+                    <p className="text-xs sm:text-sm text-gray-300 truncate group-hover:text-white transition-colors">
                       {testimonial.role} - {testimonial.company}
                     </p>
                   </div>

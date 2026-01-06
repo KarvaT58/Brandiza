@@ -12,6 +12,7 @@ import {
 import { Check, MessageCircle, Code2, Server, Database, Shield, Zap } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { useScrollReveal } from "@/hooks/useScrollReveal"
 
 const pricingPlans = [
   {
@@ -95,6 +96,9 @@ const pricingPlans = [
 ]
 
 export function Pricing() {
+  const { elementRef, isRevealed } = useScrollReveal(0.1)
+  const { elementRef: headerRef, isRevealed: headerRevealed } = useScrollReveal(0.2)
+
   const handleWhatsApp = (planName: string, cta: string) => {
     const message = encodeURIComponent(
       `Olá! Tenho interesse no pacote ${planName}. ${cta}`
@@ -103,9 +107,9 @@ export function Pricing() {
   }
 
   return (
-    <section id="pacotes" className="py-20 bg-background">
+    <section id="pacotes" className="py-20 bg-gradient-to-b from-background to-background section-pattern relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16 px-4">
+        <div ref={headerRef} className={`text-center mb-12 sm:mb-16 px-4 ${headerRevealed ? "scroll-reveal" : ""}`} style={{ opacity: headerRevealed ? 1 : 0 }}>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-foreground">
             Nossos Pacotes
           </h2>
@@ -114,44 +118,57 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-12 px-4 sm:px-0">
+        <div ref={elementRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-12 px-4 sm:px-0">
           {pricingPlans.map((plan, index) => (
             <Card
               key={plan.name}
-              className={`relative flex flex-col h-full hover-lift smooth-transition ${
+              className={`relative flex flex-col h-full hover-3d smooth-transition overflow-visible group ${
                 plan.popular
-                  ? "border-primary border-2 shadow-xl hover-glow bg-primary/5 scale-105 lg:scale-110"
-                  : "hover:border-primary/50"
-              }`}
+                  ? "border-primary border-2 shadow-xl hover-glow bg-gradient-to-br from-primary/10 via-primary/5 to-transparent scale-105 lg:scale-110 pulse-glow"
+                  : "hover:border-primary/50 gradient-border"
+              } ${isRevealed ? "scroll-reveal" : ""}`}
               style={{ 
-                animation: `fadeInUp 0.6s ease-out ${index * 0.1}s forwards`,
-                opacity: 0
+                animationDelay: `${index * 0.15}s`,
+                opacity: isRevealed ? 1 : 0
               }}
             >
+              {/* Background gradient effect */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${
+                plan.popular 
+                  ? "from-primary/10 via-primary/5 to-transparent" 
+                  : "from-muted/50 to-transparent"
+              } opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+              
               {plan.popular && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs sm:text-sm font-bold px-3 py-1 shadow-lg">
+                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-black text-xs sm:text-sm font-bold px-3 py-1.5 shadow-lg badge-pulse z-20 border border-border whitespace-nowrap">
                   ⭐ Mais Popular
                 </Badge>
               )}
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl sm:text-2xl">{plan.name}</CardTitle>
+              
+              <CardHeader className="pb-4 relative z-10">
+                <CardTitle className="text-xl sm:text-2xl group-hover:text-primary transition-colors">
+                  {plan.name}
+                </CardTitle>
                 <CardDescription className="text-sm">{plan.description}</CardDescription>
                 <div className="mt-4">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl sm:text-4xl font-bold">{plan.price}</span>
+                    <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent group-hover:from-primary group-hover:to-primary/70 transition-all">
+                      {plan.price}
+                    </span>
                   </div>
                   <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                     {plan.priceNote}
                   </p>
                   {plan.deliveryTime && (
-                    <p className="text-[10px] sm:text-xs text-primary font-semibold mt-1.5">
-                      ⏱️ Prazo: {plan.deliveryTime}
+                    <p className="text-[10px] sm:text-xs text-primary font-semibold mt-1.5 flex items-center gap-1">
+                      <span>⏱️</span>
+                      <span>Prazo: {plan.deliveryTime}</span>
                     </p>
                   )}
                   {(plan.hasRecurrence || plan.showOptionalMaintenance) && plan.maintenancePrice && (
                     <>
                       <div className="flex items-baseline gap-2 mt-2">
-                        <span className="text-xl sm:text-2xl font-bold text-primary">
+                        <span className="text-xl sm:text-2xl font-bold text-primary group-hover:scale-105 transition-transform">
                           {plan.maintenancePrice}
                         </span>
                       </div>
@@ -162,7 +179,7 @@ export function Pricing() {
                   )}
                 </div>
               </CardHeader>
-              <CardContent className="flex-grow space-y-4 flex flex-col">
+              <CardContent className="flex-grow space-y-4 flex flex-col relative z-10">
                 {/* Tecnologias */}
                 <div className="bg-muted/50 rounded-md p-2 sm:p-3 border border-border/50 hover:bg-muted/70 smooth-transition">
                   <p className="text-[10px] sm:text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
@@ -271,13 +288,18 @@ export function Pricing() {
                   <div className="min-h-[60px]"></div>
                 )}
               </CardContent>
-              <CardFooter>
+              <CardFooter className="relative z-10">
                 <Button
-                  className="w-full hover-scale smooth-transition group"
+                  className="w-full hover-scale smooth-transition group ripple-effect relative overflow-hidden"
                   onClick={() => handleWhatsApp(plan.name, plan.cta)}
                 >
-                  <MessageCircle className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                  {plan.cta}
+                  {plan.popular && (
+                    <span className="shimmer absolute inset-0"></span>
+                  )}
+                  <span className="relative z-10 flex items-center">
+                    <MessageCircle className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                    {plan.cta}
+                  </span>
                 </Button>
               </CardFooter>
             </Card>

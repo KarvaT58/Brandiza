@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { HelpCircle, MessageCircle } from "lucide-react"
+import { useScrollReveal } from "@/hooks/useScrollReveal"
 
 const faqItems = [
   {
@@ -61,11 +62,14 @@ const faqItems = [
 ]
 
 export function FAQ() {
+  const { elementRef, isRevealed } = useScrollReveal(0.1)
+  const { elementRef: headerRef, isRevealed: headerRevealed } = useScrollReveal(0.2)
+
   return (
-    <section id="faq" className="py-16 sm:py-20 md:py-24 bg-background">
+    <section id="faq" className="py-16 sm:py-20 md:py-24 bg-background section-pattern relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div ref={headerRef} className={`text-center mb-12 sm:mb-16 ${headerRevealed ? "scroll-reveal" : ""}`} style={{ opacity: headerRevealed ? 1 : 0 }}>
           <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 mb-4 sm:mb-6">
             <HelpCircle className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
           </div>
@@ -78,18 +82,24 @@ export function FAQ() {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="max-w-4xl mx-auto">
+        <div ref={elementRef} className="max-w-4xl mx-auto">
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqItems.map((item, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-border rounded-lg px-4 sm:px-6 bg-card hover:bg-muted/50 smooth-transition"
+                className={`border border-border rounded-lg px-4 sm:px-6 bg-card hover:bg-muted/50 smooth-transition gradient-border hover-lift-enhanced group ${
+                  isRevealed ? "scroll-reveal" : ""
+                }`}
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  opacity: isRevealed ? 1 : 0
+                }}
               >
-                <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-foreground hover:no-underline py-4 sm:py-6">
+                <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-foreground hover:no-underline py-4 sm:py-6 group-hover:text-primary transition-colors">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm sm:text-base text-muted-foreground pb-4 sm:pb-6 leading-relaxed">
+                <AccordionContent className="text-sm sm:text-base text-muted-foreground pb-4 sm:pb-6 leading-relaxed group-hover:text-foreground transition-colors">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -111,10 +121,13 @@ export function FAQ() {
               const message = encodeURIComponent("Olá! Tenho algumas dúvidas sobre os serviços.")
               window.open(`https://wa.me/5545999854508?text=${message}`, "_blank")
             }}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 hover-lift smooth-transition"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 hover-lift-enhanced smooth-transition ripple-effect pulse-glow relative overflow-hidden group"
           >
-            <MessageCircle className="mr-2 h-5 w-5" />
-            Falar no WhatsApp
+            <span className="shimmer absolute inset-0"></span>
+            <span className="relative z-10 flex items-center">
+              <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+              Falar no WhatsApp
+            </span>
           </Button>
         </div>
       </div>

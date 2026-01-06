@@ -46,7 +46,9 @@ export function AuthorityProof() {
   const duplicatedItems = [...authorityItems, ...authorityItems]
 
   return (
-    <section className="py-4 sm:py-6 bg-black border-y border-white/10 overflow-hidden">
+    <section className="py-4 sm:py-6 bg-black border-y border-white/10 overflow-hidden relative">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10 pointer-events-none"></div>
       <div className="relative">
         {/* Faixa animada */}
         <div className="flex animate-scroll">
@@ -56,13 +58,13 @@ export function AuthorityProof() {
               return (
                 <div
                   key={index}
-                  className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 flex-shrink-0"
+                  className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 flex-shrink-0 group/item hover:scale-105 transition-transform"
                 >
-                  <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-white flex-shrink-0" />
-                  <span className="text-white text-xs sm:text-sm md:text-base font-medium">
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-white flex-shrink-0 group-hover/item:text-primary transition-colors" />
+                  <span className="text-white text-xs sm:text-sm md:text-base font-medium group-hover/item:text-primary transition-colors">
                     {item.text}
                   </span>
-                  <div className="h-3 sm:h-4 w-px bg-white/30 mx-1 sm:mx-2"></div>
+                  <div className="h-3 sm:h-4 w-px bg-white/30 mx-1 sm:mx-2 group-hover/item:bg-primary/50 transition-colors"></div>
                 </div>
               )
             })}
