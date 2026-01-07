@@ -7,9 +7,9 @@ import { useScrollReveal } from "@/hooks/useScrollReveal"
 const benefits = [
   {
     icon: TrendingUp,
-    metric: "250%",
-    description: "Aumento médio de vendas online",
-    detail: "Clientes aumentaram vendas após o site",
+    metric: "67%",
+    description: "Aumento na procura dos servições",
+    detail: "Clientes aumentaram a procura dos serviços após o site",
   },
   {
     icon: Zap,

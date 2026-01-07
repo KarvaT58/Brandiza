@@ -6,7 +6,7 @@ import { MessageCircle } from "lucide-react"
 export function Contact() {
   const handleWhatsApp = () => {
     const message = encodeURIComponent("Olá! Gostaria de entrar em contato sobre desenvolvimento de sites.")
-    window.open(`https://wa.me/5545999854508?text=${message}`, "_blank")
+    window.open(`https://wa.me/5545998228660?text=${message}`, "_blank")
   }
 
   return (
@@ -29,7 +29,7 @@ export function Contact() {
           >
             <MessageCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
             <span className="hidden sm:inline">Falar no WhatsApp: </span>
-            <span>(45) 99985-4508</span>
+            <span>(45) 9-9822-8660</span>
           </Button>
         </div>
       </div>

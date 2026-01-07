@@ -13,11 +13,11 @@ import {
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false)
-  const phoneNumber = "(45) 99985-4508"
+  const phoneNumber = "(45) 9-9822-8660"
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent("Olá! Gostaria de entrar em contato sobre desenvolvimento de sites.")
-    window.open(`https://wa.me/5545999854508?text=${message}`, "_blank")
+    window.open(`https://wa.me/5545998228660?text=${message}`, "_blank")
   }
 
   const handleCopyPhone = async () => {

@@ -7,8 +7,8 @@ import { MessageCircle, Phone, HelpCircle, CheckCircle2, Copy, Check } from "luc
 
 export function SupportPage() {
   const [copied, setCopied] = useState(false)
-  const phoneNumber = "(45) 99985-4508"
-  const phoneNumberRaw = "5545999854508"
+  const phoneNumber = "(45) 9-9822-8660"
+  const phoneNumberRaw = "5545998228660"
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent("Olá! Preciso de suporte técnico.")
@@ -64,7 +64,7 @@ export function SupportPage() {
                 Abrir WhatsApp
               </Button>
               <p className="text-xs text-muted-foreground text-center">
-                (45) 99985-4508
+                (45) 9-9822-8660
               </p>
             </CardContent>
           </Card>

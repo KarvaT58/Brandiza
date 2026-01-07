@@ -29,3 +29,6 @@ export function useScrollReveal(threshold = 0.1) {
   return { elementRef, isRevealed }
 }
 
+
+
+

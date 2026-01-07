@@ -19,7 +19,7 @@ export function Hero() {
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent("Olá! Gostaria de saber mais sobre os pacotes de sites.")
-    window.open(`https://wa.me/5545999854508?text=${message}`, "_blank")
+    window.open(`https://wa.me/5545998228660?text=${message}`, "_blank")
   }
 
   const scrollToSection = (section: string) => {

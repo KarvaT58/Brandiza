@@ -74,12 +74,12 @@ export function Footer() {
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 <a
-                  href="https://wa.me/5545999854508"
+                  href="https://wa.me/5545998228660"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors hover-scale smooth-transition"
                 >
-                  (45) 99985-4508
+                  (45) 9-9822-8660
                 </a>
               </div>
             </div>

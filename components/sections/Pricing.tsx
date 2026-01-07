@@ -19,7 +19,7 @@ const pricingPlans = [
     name: "Landing Page",
     price: "R$ 250",
     priceNote: "Pagamento único",
-    maintenancePrice: "+ R$ 99/mês",
+    maintenancePrice: "+ R$ 97/mês",
     maintenanceNote: "Manutenção opcional",
     deliveryTime: "7 dias",
     description: "Perfeito para começar sua presença online agora mesmo.",
@@ -40,7 +40,7 @@ const pricingPlans = [
     name: "Site Detalhado",
     price: "R$ 750",
     priceNote: "Desenvolvimento (setup)",
-    maintenancePrice: "+ R$ 350/mês",
+    maintenancePrice: "+ R$ 397/mês",
     maintenanceNote: "Manutenção mensal",
     deliveryTime: "15 dias",
     description: "Ideal para empresas que querem crescer online com suporte contínuo",
@@ -67,8 +67,8 @@ const pricingPlans = [
   {
     name: "Site Profissional",
     price: "R$ 1.500",
-    priceNote: "Setup inicial",
-    maintenancePrice: "+ R$ 750/mês",
+    priceNote: "Apartir de R$ 1.500",
+    maintenancePrice: "+ R$ 747/mês",
     maintenanceNote: "Gestão contínua",
     deliveryTime: "30+ dias",
     description: "Solução completa para empresas que precisam de performance e tranquilidade",
@@ -103,7 +103,7 @@ export function Pricing() {
     const message = encodeURIComponent(
       `Olá! Tenho interesse no pacote ${planName}. ${cta}`
     )
-    window.open(`https://wa.me/5545999854508?text=${message}`, "_blank")
+    window.open(`https://wa.me/5545998228660?text=${message}`, "_blank")
   }
 
   return (

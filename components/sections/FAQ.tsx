@@ -25,11 +25,11 @@ const faqItems = [
   },
   {
     question: "O que acontece se eu não quiser pagar a mensalidade?",
-    answer: "A mensalidade é obrigatória apenas para os pacotes Site Detalhado e Site Profissional, pois inclui hospedagem, segurança, atualizações e suporte. Se você optar pelo pacote Landing Page, a mensalidade é opcional. Caso cancele a mensalidade em qualquer pacote, você receberá um aviso prévio e poderá exportar seus dados antes do encerramento do serviço.",
+    answer: "A mensalidade é obrigatória  para todos os pacotes Landing Page, Site Detalhado e Site Profissional, pois inclui hospedagem, segurança, atualizações e suporte. Se você optar pelo pacote Landing Page, a mensalidade é opcional. Caso cancele a mensalidade em qualquer pacote, você receberá um aviso prévio e poderá exportar seus dados antes do encerramento do serviço.",
   },
   {
     question: "Meu site ficará no ar mesmo sem pagar mensalidade?",
-    answer: "Para os pacotes com mensalidade obrigatória (Site Detalhado e Site Profissional), o site precisa da mensalidade para permanecer no ar, pois ela cobre hospedagem, domínio, segurança e atualizações. Para a Landing Page, você pode optar por manter apenas o pagamento único, mas recomendamos a manutenção mensal para garantir segurança e atualizações.",
+    answer: "Para os pacotes com mensalidade obrigatória (Landing Page, Site Detalhado e Site Profissional), o site precisa da mensalidade para permanecer no ar, pois ela cobre hospedagem, domínio, segurança e atualizações. Para a Landing Page, você pode optar por manter apenas o pagamento único, mas recomendamos a manutenção mensal para garantir segurança e atualizações.",
   },
   {
     question: "Vocês fazem alterações no site depois de pronto?",
@@ -112,7 +112,7 @@ export function FAQ() {
             size="lg"
             onClick={() => {
               const message = encodeURIComponent("Olá! Tenho algumas dúvidas sobre os serviços.")
-              window.open(`https://wa.me/5545999854508?text=${message}`, "_blank")
+              window.open(`https://wa.me/5545998228660?text=${message}`, "_blank")
             }}
             className="bg-primary text-primary-foreground hover:bg-primary/90 hover-lift-enhanced smooth-transition ripple-effect pulse-glow relative overflow-hidden group"
           >
