@@ -17,9 +17,9 @@ import { useScrollReveal } from "@/hooks/useScrollReveal"
 const pricingPlans = [
   {
     name: "Landing Page",
-    price: "R$ 250",
+    price: "R$ 347",
     priceNote: "Pagamento único",
-    maintenancePrice: "+ R$ 97/mês",
+    maintenancePrice: "+ R$ 147/mês",
     maintenanceNote: "Manutenção opcional",
     deliveryTime: "7 dias",
     description: "Perfeito para começar sua presença online agora mesmo.",
