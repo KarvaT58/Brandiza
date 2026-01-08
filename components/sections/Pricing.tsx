@@ -18,9 +18,9 @@ const pricingPlans = [
   {
     name: "Landing Page",
     price: "R$ 347",
-    priceNote: "Pagamento único",
+    priceNote: "Desenvolvimento (setup)",
     maintenancePrice: "+ R$ 147/mês",
-    maintenanceNote: "Manutenção opcional",
+    maintenanceNote: "Manutenção mensal",
     deliveryTime: "7 dias",
     description: "Perfeito para começar sua presença online agora mesmo.",
     features: [
